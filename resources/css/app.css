@@ -1,0 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.bg-split-gradient-to-br {
+    background-image: linear-gradient(to bottom right, var(--tw-gradient-from) 50%, var(--tw-gradient-to) 50%);
+}
