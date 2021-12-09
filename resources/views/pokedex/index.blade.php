@@ -3,7 +3,7 @@
         @foreach ($pokemons as $pokemon)
             <ul>
                 <li>
-                    <a href="/pokemon/{{ $pokemon['id'] }}">
+                    <a href="/pokedex/{{ $pokemon->id }}">
                         <x-pokemon-card :pokemon="$pokemon" />
                     </a>
                 </li>
