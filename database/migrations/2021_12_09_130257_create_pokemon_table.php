@@ -18,6 +18,11 @@ class CreatePokemonTable extends Migration
             $table->string('name');
             $table->string('type1');
             $table->string('type2')->nullable();
+            $table->string('ability1');
+            $table->string('ability2')->nullable();
+            $table->smallInteger('weight');
+            $table->smallInteger('height');
+            $table->string('category');
             $table->string('sprite');
         });
     }

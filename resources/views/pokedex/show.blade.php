@@ -15,10 +15,10 @@
             <div>
                 <p>Type: {{ $pokemon->type1 }}{{ $pokemon->type2 ? ' / ' . $pokemon->type2 : ''}}</p>
     
-                <p>Height: xxx m</p>
-                <p>Weight: xxx kg</p>
-                <p>Category: Xxxxx</p>
-                <p>Abilities: Xxxxxxxxx</p>
+                <p>Height: {{ $pokemon->height / 10 }} m</p>
+                <p>Weight: {{ $pokemon->weight / 10 }} kg</p>
+                <p>Category: {{ $pokemon->category }}</p>
+                <p>Abilities: {{ $pokemon->ability1 }}{{ $pokemon->ability2 ? ' / ' . $pokemon->ability2 : ''}}</p>
     
                 <p>Description</p>
             </div>
