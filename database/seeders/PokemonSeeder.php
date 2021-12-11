@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\Pokemon;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Http;
 
 class PokemonSeeder extends Seeder
@@ -15,41 +16,41 @@ class PokemonSeeder extends Seeder
      */
     public function run()
     {
-        $item_count = 898;
-        $item_count = 50;
+        $pokemon_count = Config::get('pokemon.count');
+        $pokemon_count = 5; // for test
         $pokemons = [];
 
-        for ($i = 0; $i < $item_count; $i++) {
+        for ($i = 0; $i < $pokemon_count; $i++) {
             $id = $i + 1;
-            $pokemons[] = $this->fetchPokemon($id);
+            $obj_pokemon = Http::get("https://pokeapi.co/api/v2/pokemon/$id")->object();
+            $pokemons[] = $this->sanitizePokemonData($obj_pokemon);
         }
 
         Pokemon::insert($pokemons);
     }
 
-    private function fetchPokemon (int $id)
+    private function sanitizePokemonData (object $data)
     {
-        $response = Http::get("https://pokeapi.co/api/v2/pokemon/$id")->object();
-        $types = array_map(fn($type) => $type->type->name, $response->types);
-        // only normal abilities
-        $abilities = array_map(
-            fn($ability) => $ability->ability->name,
-            array_filter($response->abilities, fn($ability) => !$ability->is_hidden)
-        );
+        // $types = array_map(fn($type) => $type->type->name, $data->types);
+        // // only normal abilities
+        // $abilities = array_map(
+        //     fn($ability) => $ability->ability->name,
+        //     array_filter($data->abilities, fn($ability) => !$ability->is_hidden)
+        // );
 
-        $category = Http::get("https://pokeapi.co/api/v2/pokemon-species/$id")->object()->genera[7]->genus;
+        // $category = Http::get("https://pokeapi.co/api/v2/pokemon-species/$data->id")->object()->genera[7]->genus;
         
+        // 'name' => $data->name,
+        // 'type1' => $types[0],
+        // 'type2' => count($types) === 2 ? $types[1] : null,
+        // 'ability1' => $abilities[0],
+        // 'ability2' => count($abilities) === 2 ? $abilities[1] : null,
+        // 'category' => $category,
         return [
-            'id' => $id,
-            'name' => $response->name,
-            'type1' => $types[0],
-            'type2' => count($types) === 2 ? $types[1] : null,
-            'ability1' => $abilities[0],
-            'ability2' => count($abilities) === 2 ? $abilities[1] : null,
-            'weight' => $response->weight,
-            'height' => $response->height,
-            'category' => $category,
-            'sprite' => $response->sprites->other->{'official-artwork'}->front_default
+            'id' => $data->id,
+            'weight' => $data->weight,
+            'height' => $data->height,
+            'sprite' => $data->sprites->other->{'official-artwork'}->front_default
         ];
     }
 }
