@@ -1,6 +1,6 @@
 @props(['pokemon'])
 
-<div class="p-1 rounded-lg w-full shadow-md bg-split-gradient-to-br from-t-{{$pokemon->type1}} to-t-{{ $pokemon->type2 ? $pokemon->type2 : $pokemon->type1 }}">
+<div class="p-1 rounded-lg w-full shadow-md bg-split-gradient-to-br from-t-{{ strtolower($pokemon->types[0]->name) }} to-t-{{ count($pokemon->types) === 2 ? strtolower($pokemon->types[1]->name) : strtolower($pokemon->types[0]->name) }}">
 
     <div class="rounded bg-white bg-opacity-50 p-2">
         <div class="flex justify-start mb-1">
@@ -9,7 +9,7 @@
             </div>
 
             <div class="flex flex-1">
-                <h3 class="text-2xl font-semibold text-gray-800">{{ ucwords($pokemon->ame) }}</h3>
+                <h3 class="text-2xl font-semibold text-gray-800">{{ ucwords($pokemon->name) }}</h3>
             </div>
 
         </div>

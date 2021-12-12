@@ -3,23 +3,21 @@
 namespace App\Http\Controllers;
 
 use App\Models\Pokemon;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Http;
 
 class PokemonController extends Controller
 {
     public function index ()
     {
         return view('pokedex.index', [
-            'pokemons' => Pokemon::all()
+            'pokemons' => Pokemon::select(['id', 'sprite'])->get(),
         ]);
     }
 
     public function show (Pokemon $pokemon)
     {
-        // TODO: store more info about $pokemon and show it in the view
+        \Illuminate\Support\Facades\App::setLocale('ja');
         return view('pokedex.show', [
-            'pokemon' => $pokemon
+            'pokemon' => $pokemon,
         ]);
     }
 }
