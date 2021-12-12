@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateAbilitiesTable extends Migration
+class CreateAbilityPokemonTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,14 @@ class CreateAbilitiesTable extends Migration
      */
     public function up()
     {
-        Schema::create('abilities', function (Blueprint $table) {
+        Schema::create('ability_pokemon', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('ability_id')->constrained();
+            $table->foreignId('pokemon_id')->constrained();
+
+            $table->unique(['ability_id', 'pokemon_id']);
+
+            $table->boolean('is_hidden');
         });
     }
 
@@ -25,6 +31,6 @@ class CreateAbilitiesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('abilities');
+        Schema::dropIfExists('ability_pokemon');
     }
 }

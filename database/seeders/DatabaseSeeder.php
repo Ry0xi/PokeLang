@@ -13,7 +13,9 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        $this->call(AbilitySeeder::class);
+        $this->call(AbilityTranslationSeeder::class);
         $this->call(PokemonSeeder::class);
-        $this->call(PokemonTranslationsSeeder::class);
+        $this->call(PokemonTranslationSeeder::class);
     }
 }

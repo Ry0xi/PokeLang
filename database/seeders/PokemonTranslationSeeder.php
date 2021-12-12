@@ -7,7 +7,7 @@ use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Http;
 
-class PokemonTranslationsSeeder extends Seeder
+class PokemonTranslationSeeder extends Seeder
 {
     /**
      * Run the database seeds.

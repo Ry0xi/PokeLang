@@ -20,10 +20,8 @@ class AbilitySeeder extends Seeder
         
         for ($i = 0; $i < $item_count; $i++) { 
             $id = $i + 1;
-            $response = Http::get("https://pokeapi.co/api/v2/ability/$id")->object();
             $abilities[] = [
                 'id' => $id,
-                'name_en' => $response->name
             ];
         }
 
