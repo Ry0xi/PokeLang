@@ -20,7 +20,6 @@ class PokemonSeeder extends Seeder
     public function run()
     {
         $pokemon_count = Config::get('pokemon.count');
-        $pokemon_count = 5; // for test
         $pokemons = [];
         $data_ability_pokemon = [];
         $data_pokemon_type = [];

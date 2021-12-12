@@ -17,7 +17,6 @@ class AbilityTranslationSeeder extends Seeder
     public function run()
     {
         $item_count = 267;
-        $item_count = 100;
         $insert_data = []; // for insert
 
         for ($i = 0; $i < $item_count; $i++) { 

@@ -17,7 +17,6 @@ class PokemonTranslationSeeder extends Seeder
     public function run()
     {
         $pokemon_count = Config::get('pokemon.count');
-        $pokemon_count = 5; // test
         $insert_data = []; // for insert
 
         for ($i = 0; $i < $pokemon_count; $i++) { 
@@ -43,7 +42,17 @@ class PokemonTranslationSeeder extends Seeder
             $name = array_pop($name)->name;
             $category = array_filter($data->genera, fn($category) => $category->language->name === $language);
             $category = array_pop($category)->genus;
-            $description = array_filter($data->flavor_text_entries, fn($text) => $text->version->name === $version_name && $text->language->name === $language);
+            $description = array_filter(
+                $data->flavor_text_entries,
+                fn($text) => $text->version->name === $version_name && $text->language->name === $language
+            );
+            // 指定のバージョンのデータがない場合は指定言語のランダムな世代からデータをとる
+            if (count($description) === 0) {
+                $description = array_filter(
+                    $data->flavor_text_entries,
+                    fn($text) => $text->language->name === $language
+                );
+            }
             $description = array_pop($description)->flavor_text;
 
             $new_data[] = [
