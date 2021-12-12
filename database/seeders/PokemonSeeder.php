@@ -23,6 +23,7 @@ class PokemonSeeder extends Seeder
         $pokemon_count = 5; // for test
         $pokemons = [];
         $data_ability_pokemon = [];
+        $data_pokemon_type = [];
 
         for ($i = 0; $i < $pokemon_count; $i++) {
             $id = $i + 1;
@@ -42,10 +43,25 @@ class PokemonSeeder extends Seeder
                     ];
                 }
             }
+
+            // data for table pokemon_type
+            foreach ($obj_pokemon->types as $type_data) {
+                $matches = null;
+                if (preg_match('/type\/(\d+)/', $type_data->type->url, $matches)) {
+                    $type_id = (int)$matches[1];
+
+                    $data_pokemon_type[] = [
+                        'pokemon_id' => $id,
+                        'type_id' => $type_id,
+                        'slot' => $type_data->slot,
+                    ];
+                }
+            }
         }
 
         Pokemon::insert($pokemons);
         DB::table('ability_pokemon')->insert($data_ability_pokemon);
+        DB::table('pokemon_type')->insert($data_pokemon_type);
     }
 
     private function sanitizePokemonData (object $data)

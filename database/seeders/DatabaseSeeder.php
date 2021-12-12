@@ -15,6 +15,7 @@ class DatabaseSeeder extends Seeder
     {
         $this->call(AbilitySeeder::class);
         $this->call(AbilityTranslationSeeder::class);
+        $this->call(TypeSeeder::class);
         $this->call(PokemonSeeder::class);
         $this->call(PokemonTranslationSeeder::class);
     }

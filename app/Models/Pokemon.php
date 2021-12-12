@@ -69,4 +69,9 @@ class Pokemon extends Model
     {
         return $this->belongsToMany(Ability::class)->wherePivot('is_hidden', true)->withPivot('is_hidden');
     }
+
+    public function types()
+    {
+        return $this->belongsToMany(Type::class)->withPivot('slot')->orderBy('slot');
+    }
 }
