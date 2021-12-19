@@ -10,6 +10,8 @@ class Pokemon extends Model
 {
     use HasFactory;
 
+    protected $with = ['translations', 'types'];
+
     /**
      * モデルにタイムスタンプを付けるかどうか
      *

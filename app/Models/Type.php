@@ -10,6 +10,8 @@ class Type extends Model
 {
     use HasFactory;
 
+    protected $with = ['translations'];
+
     public function getNameAttribute()
     {
         return $this->getTranslated('name');
