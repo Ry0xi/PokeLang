@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\PokemonController;
+use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\SessionController;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Route;
 
@@ -15,9 +17,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [PokemonController::class, 'index']);
+
+Route::get('register', [RegisterController::class, 'create']);
+Route::post('register', [RegisterController::class, 'store']);
+
+Route::get('login', [SessionController::class, 'create']);
+Route::post('login', [SessionController::class, 'store']);
+Route::post('logout', [SessionController::class, 'destroy']);
 
 Route::get('pokedex', [PokemonController::class, 'index']);
 Route::get('pokedex/{pokemon}', [PokemonController::class, 'show']);

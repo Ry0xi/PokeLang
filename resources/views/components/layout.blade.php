@@ -11,10 +11,8 @@
     <x-header />
 
     <main>
-        <div class="max-w-7xl mx-auto py-6 px-8">
-            <!-- Replace with your content -->
+        <div class="max-w-7xl min-h-screen mx-auto py-6 px-8">
             {{ $slot }}
-            <!-- /End replace -->
         </div>
     </main>
 
