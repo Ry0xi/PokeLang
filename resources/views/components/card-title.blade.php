@@ -1,1 +1,1 @@
-<h3 class="font-bold text-2xl text-center text-gray-700">{{ $slot }}</h3>
+<h3 {{ $attributes(['class' => 'font-bold text-2xl text-center text-gray-700']) }}>{{ $slot }}</h3>

@@ -3,7 +3,7 @@
 use App\Http\Controllers\PokemonController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\SessionController;
-use Illuminate\Support\Facades\Http;
+use App\Http\Controllers\UserSettingController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -25,6 +25,9 @@ Route::post('register', [RegisterController::class, 'store']);
 Route::get('login', [SessionController::class, 'create']);
 Route::post('login', [SessionController::class, 'store']);
 Route::post('logout', [SessionController::class, 'destroy']);
+
+Route::get('settings', [UserSettingController::class, 'index']);
+Route::post('settings', [UserSettingController::class, 'store']);
 
 Route::get('pokedex', [PokemonController::class, 'index']);
 Route::get('pokedex/{pokemon}', [PokemonController::class, 'show']);
