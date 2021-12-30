@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Pokemon;
+use Illuminate\Support\Facades\Auth;
 
 class PokemonController extends Controller
 {
@@ -15,9 +16,9 @@ class PokemonController extends Controller
 
     public function show (Pokemon $pokemon)
     {
-        \Illuminate\Support\Facades\App::setLocale('ja');
         return view('pokedex.show', [
             'pokemon' => $pokemon,
+            'study_language' => request()->user()->study_language,
         ]);
     }
 }

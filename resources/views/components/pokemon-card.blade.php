@@ -1,6 +1,6 @@
 @props(['pokemon'])
 
-<div class="p-1 rounded-lg w-full shadow-md bg-split-gradient-to-br from-t-{{ strtolower($pokemon->types[0]->name) }} to-t-{{ count($pokemon->types) === 2 ? strtolower($pokemon->types[1]->name) : strtolower($pokemon->types[0]->name) }}">
+<div class="p-1 rounded-lg w-full shadow-md bg-split-gradient-to-br from-t-{{ strtolower($pokemon->types[0]->getTranslated('name', 'en')) }} to-t-{{ count($pokemon->types) === 2 ? strtolower($pokemon->types[1]->getTranslated('name', 'en')) : strtolower($pokemon->types[0]->getTranslated('name', 'en')) }}">
 
     <div class="rounded bg-white bg-opacity-50 p-2">
         <div class="flex justify-start mb-1">
