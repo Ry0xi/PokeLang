@@ -6,7 +6,7 @@
 
         <div class="flex-1 p-4">
             <div class="flex items-center mb-4">
-                <h2 class="text-5xl font-bold text-gray-800 mr-4">{{ ucwords($pokemon->name) }}</h2>
+                <h2 class="text-5xl font-bold text-gray-800 mr-4 min-w-max">{{ ucwords($pokemon->name) }}</h2>
                 <h2 class="text-5xl font-bold text-gray-800 mr-4">{{ ucwords($pokemon->getTranslated('name', $study_language)) }}</h2>
                 <div>
                     <span class="text-5xl font-bold text-gray-600">{{ sprintf('#%03d', $pokemon->id) }}</span>
